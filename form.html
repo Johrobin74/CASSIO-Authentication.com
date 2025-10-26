@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Product Registration Form</title>
+  <style>
+    body{font-family:system-ui,Arial;margin:0;padding:20px;background:#fff;color:#111}
+    .wrap{max-width:760px;margin:0 auto}
+    h2{color:#0a5bd3;margin-bottom:16px}
+    input,select,textarea{
+      width:100%;padding:12px;margin:6px 0 14px;
+      border:1px solid #ccc;border-radius:8px;font-size:16px
+    }
+    label{font-weight:700}
+    .submit{
+      background:#0a5bd3;color:#fff;padding:14px;border-radius:10px;
+      border:none;cursor:pointer;font-size:16px;width:100%;margin-top:6px
+    }
+    .msg{margin-top:16px;font-size:16px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h2>STEP 2 — Register Your Product</h2>
+    <form id="regForm">
+      <label>Full Name</label>
+      <input name="name" required/>
+
+      <label>Email</label>
+      <input name="email" type="email" required/>
+
+      <label>Username (for this site)</label>
+      <input name="username" required/>
+
+      <label>Serial Number (optional)</label>
+      <input name="serial"/>
+
+      <label>Store</label>
+      <input name="store"/>
+
+      <label>Country / Region</label>
+      <input name="country"/>
+
+      <label>Date of Purchase</label>
+      <input name="purchase_date" type="date"/>
+
+      <label>Additional Notes</label>
+      <textarea name="notes"></textarea>
+
+      <!-- Model value passed from previous page -->
+      <input type="hidden" name="model" id="modelInput"/>
+
+      <button type="submit" class="submit">Register</button>
+    </form>
+
+    <div id="result" class="msg"></div>
+  </div>
+
+  <script>
+    // Get model from URL query param
+    function qs(name){
+      const url = new URL(location.href);
+      return url.searchParams.get(name);
+    }
+    const model = qs('model') || '';
+    document.getElementById('modelInput').value = model;
+
+    // TODO: REPLACE this with your Web App URL after deployment
+    const webappUrl = "YOUR_WEBAPP_URL_HERE";
+
+    document.getElementById('regForm').addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      const f = new FormData(e.target);
+      const data = {};
+      for(const [k,v] of f.entries()){ data[k] = v; }
+
+      try {
+        const resp = await fetch(webappUrl, {
+          method: "POST",
+          headers: {"Content-Type":"application/json"},
+          body: JSON.stringify(data)
+        });
+        const json = await resp.json();
+        if(json.status === "ok"){
+          document.getElementById('result').innerText = "✅ Registered successfully!";
+          e.target.reset();
+        } else {
+          document.getElementById('result').innerText = "❌ Error: " + (json.message || "Unknown");
+        }
+      } catch(err){
+        document.getElementById('result').innerText = "⚠️ Network error: " + err.message;
+      }
+    });
+  </script>
+</body>
+</html>

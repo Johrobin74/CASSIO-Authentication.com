@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Select Calculator</title>
+  <style>
+    body{font-family:system-ui,Arial;margin:0;padding:20px;background:#fff;color:#111}
+    .logo{color:#0a5bd3;font-weight:800;font-size:26px;margin-bottom:8px}
+    h2{margin:10px 0 18px;color:#0a5bd3}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:10px}
+    .model{border:1px solid #e0e0e0;padding:12px;border-radius:10px;text-align:center;cursor:pointer;transition:.2s}
+    .model:hover{background:#f3f6ff;border-color:#0a5bd3}
+    .model input{margin-top:8px}
+    select{margin-top:14px;padding:12px;border-radius:8px;border:1px solid #ccc;width:100%}
+    .btn{display:inline-block;padding:14px 18px;border-radius:10px;background:#bfc6ca;color:#fff;margin-top:16px;cursor:pointer;text-align:center}
+    .btn.active{background:#0a5bd3}
+    #error{color:#c00;margin-top:10px;display:none}
+    @media(max-width:700px){.grid{grid-template-columns:repeat(2,1fr)}}
+  </style>
+</head>
+<body>
+  <div class="logo">CASIO — Register Product</div>
+  <h2>STEP 1 — Select a calculator you bought</h2>
+
+  <div class="grid" id="models">
+    <!-- 7 models + Other -->
+    <label class="model"><div>CLASSWIZ CW</div><input type="radio" name="model" value="CLASSWIZ CW Series"></label>
+    <label class="model"><div>FX-991ES</div><input type="radio" name="model" value="FX-991ES"></label>
+    <label class="model"><div>FX-991EX</div><input type="radio" name="model" value="FX-991EX"></label>
+    <label class="model"><div>FX-82MS</div><input type="radio" name="model" value="FX-82MS"></label>
+    <label class="model"><div>FX-85GT</div><input type="radio" name="model" value="FX-85GT"></label>
+    <label class="model"><div>FX-570ES</div><input type="radio" name="model" value="FX-570ES"></label>
+    <label class="model"><div>FX-115ES</div><input type="radio" name="model" value="FX-115ES"></label>
+    <label class="model"><div>Other</div><input type="radio" name="model" value="Other"></label>
+  </div>
+
+  <select id="modelSelect">
+    <option value="">Or pick from this dropdown</option>
+    <option value="CLASSWIZ CW Series">CLASSWIZ CW Series</option>
+    <option value="FX-991ES">FX-991ES</option>
+    <option value="FX-991EX">FX-991EX</option>
+    <option value="FX-82MS">FX-82MS</option>
+    <option value="FX-85GT">FX-85GT</option>
+    <option value="FX-570ES">FX-570ES</option>
+    <option value="FX-115ES">FX-115ES</option>
+    <option value="Other">Other</option>
+  </select>
+
+  <div id="error">Please select a calculator from the dropdown list.</div>
+
+  <div>
+    <a id="continueBtn" class="btn">Continue</a>
+  </div>
+
+  <script>
+    const continueBtn = document.getElementById('continueBtn');
+    const modelSelect = document.getElementById('modelSelect');
+
+    // Auto-select dropdown when radio is clicked
+    document.querySelectorAll('input[name="model"]').forEach(r=>{
+      r.addEventListener('change', ()=> {
+        modelSelect.value = r.value;
+        document.getElementById('error').style.display='none';
+      });
+    });
+
+    continueBtn.addEventListener('click', ()=>{
+      const m = modelSelect.value;
+      if(!m){
+        document.getElementById('error').style.display='block';
+        return;
+      }
+      // Pass model to form.html
+      location.href = 'form.html?model=' + encodeURIComponent(m);
+    });
+  </script>
+</body>
+</html>

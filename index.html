@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Authentication Result</title>
+
+  <style>
+    :root{
+      --brand:#0a5bd3;
+      --btn-bg:#dff2ff;
+      --btn-border:#8cd0ff;
+      --btn-text:#0098ff;
+    }
+
+    *{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,Helvetica,sans-serif;}
+
+    body{
+      background:#fff;
+      display:flex;
+      justify-content:center;
+      padding:0;
+    }
+
+    .phone{
+      width:414px;
+      min-height:100vh;
+      background:#fff;
+      border-left:1px solid #ddd;
+      border-right:1px solid #ddd;
+    }
+
+    /* Header */
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:14px 18px;
+      background:#fff;
+      position:sticky;
+      top:0;
+      z-index:50;
+    }
+    .brand{
+      font-weight:800;
+      color:var(--brand);
+      font-size:26px;
+      letter-spacing:0.5px;
+    }
+    .lang{
+      color:#4b5563;
+      font-size:13px;
+      font-weight:600;
+    }
+
+    /* Blue underline */
+    .underline{
+      width:100%;
+      height:4px;
+      background:var(--brand);
+    }
+
+    main{
+      padding:0 0 50px;
+      width:100%;
+      overflow-x:hidden;
+    }
+
+    /* Full block image */
+    .full-img{
+      width:100%;
+      height:auto;
+      max-height:620px;
+      overflow:hidden;
+    }
+    .full-img img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    /* Buttons */
+    .action-btn{
+      width:90%;                 /* BW-2 */
+      margin:14px auto;
+      background:var(--btn-bg);
+      border:1.5px solid var(--btn-border);
+      border-radius:14px;
+      padding:16px 20px;
+      display:flex;
+      align-items:center;
+      gap:14px;
+      text-decoration:none;
+      color:var(--btn-text);
+      font-weight:700;
+      font-size:18px;
+      letter-spacing:0.4px;
+    }
+
+    /* Icon box */
+    .icon-box{
+      width:44px;
+      height:44px;
+      border-radius:10px;
+      background:rgba(10,120,220,0.10);
+      border:2px solid rgba(10,120,220,0.18);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-shrink:0;
+    }
+    .icon-box svg{
+      width:22px;
+      height:22px;
+      stroke:#0aa0ff;
+      fill:none;
+      stroke-width:1.8;
+      stroke-linecap:round;
+      stroke-linejoin:round;
+    }
+
+    /* Hover effect (HOV-A) */
+    .action-btn:active{
+      filter:brightness(0.93);
+    }
+
+    /* Subtext under Register button */
+    .sub{
+      font-size:13px;
+      color:#6b7280;
+      margin-top:6px;
+      font-weight:500;
+      letter-spacing:0.2px;
+    }
+
+    .promo{
+      font-size:15px;
+      color:#374151;
+      margin:10px 0 4px;
+      text-align:center;
+      width:90%;
+      margin-left:auto;
+      margin-right:auto;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="phone">
+
+    <!-- HEADER -->
+    <header class="topbar">
+      <div class="brand">CASIO</div>
+      <div class="lang">EN ▾</div>
+    </header>
+    <div class="underline"></div>
+
+    <main>
+
+      <!-- FULL BLOCK IMAGE (Replace step5.png with your own image) -->
+      <div class="full-img">
+        <img src="step0.png" alt="Authentication Result Screen">
+      </div>
+
+      <!-- ABOUT AUTHENTICITY CHECK BUTTON -->
+      <a href="about.html" class="action-btn">
+        <div class="icon-box">
+          <svg viewBox="0 0 24 24">
+            <rect x="3" y="3" width="12" height="12" rx="2"></rect>
+            <rect x="9" y="9" width="12" height="12" rx="2"></rect>
+          </svg>
+        </div>
+        About Authenticity Check
+      </a>
+
+      <p class="promo">Register for our membership now for Premium Content giveaway!</p>
+
+      <!-- REGISTER BUTTON -->
+      <a href="register.html" class="action-btn">
+        <div class="icon-box">
+          <svg viewBox="0 0 24 24">
+            <rect x="3" y="3" width="12" height="12" rx="2"></rect>
+            <rect x="9" y="9" width="12" height="12" rx="2"></rect>
+          </svg>
+        </div>
+        <div>
+          Register your product information.
+          <div class="sub">Get product support & offers</div>
+        </div>
+      </a>
+
+    </main>
+  </div>
+</body>
+</html>
